@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #080808; }
+  @keyframes lineUp { from { transform: translateY(112%); } to { transform: translateY(0); } }
+  @keyframes softUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+
+<div style="position:relative; width:100%; min-height:100vh; background:#080808; font-family:'Archivo',sans-serif; overflow:hidden;">
+
+  <video ref="{{ videoRef }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" poster="https://images.pexels.com/videos/2286306/free-video-2286306.jpg?auto=compress&cs=tinysrgb&w=1600" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+    <source src="https://videos.pexels.com/video-files/2286306/2286306-hd_1280_720_24fps.mp4" type="video/mp4">
+    <source src="https://videos.pexels.com/video-files/2286306/2286306-hd_1920_1080_24fps.mp4" type="video/mp4">
+    <source src="https://videos.pexels.com/video-files/2286306/2286306-sd_960_540_24fps.mp4" type="video/mp4">
+  </video>
+  <div style="{{ heroOverlayStyle }}">
+
+  <audio ref="{{ audioRef }}" loop="{{ true }}" preload="auto">
+    <source src="https://actions.google.com/sounds/v1/water/water_rushing_stereo_series.ogg" type="audio/ogg">
+  </audio>
+
+  <header style="{{ headerStyle }}">
+    <a href="#" style="{{ brandStyle }}">Kayak Rafting Peru</a>
+    <button onClick="{{ openMenu }}" style="{{ menuBtnStyle }}">
+      <span>Menú</span>
+      <span style="font-size:20px; font-weight:300; line-height:1;">+</span>
+    </button>
+  </header>
+
+  <section data-screen-label="Hero" style="{{ sectionStyle }}">
+    <h1 style="margin:0; max-width:1100px; font-family:'Playfair Display',serif; color:#f7f4ef; font-weight:800; line-height:0.9; font-size:clamp(38px, 11.5vw, 188px); letter-spacing:-0.01em;">
+      <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.12s;">Domina la</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.24s;">Corriente.</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.36s;">Abraza el</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.48s;">Río</span></span>
+    </h1>
+
+    <div style="{{ bottomRowStyle }}">
+      <p style="{{ paraStyle }}">Únete a una comunidad de aventureros que buscan la adrenalina de los rápidos y la calma del valle. Tu próxima gran aventura empieza aquí.</p>
+      <button style="{{ reserveBtnStyle }}" style-hover="background:#0a0a0a; color:#f7f4ef; box-shadow:inset 0 0 0 1px #f7f4ef;">
+        Reserva tu <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; text-transform:none; font-size:18px; letter-spacing:0.02em;">Aventura</span>
+      </button>
+    </div>
+  </section>
+
+  <button onClick="{{ toggleSound }}" aria-label="sonido" style="{{ soundBtnStyle }}" style-hover="border-color:rgba(247,244,239,0.7); color:#f7f4ef;">
+    <span style="font-size:13px;">{{ soundIcon }}</span>
+    <span>{{ soundLabel }}</span>
+  </button>
+
+  <!-- MENU: blurred backdrop + white side panel -->
+  <div style="{{ overlayStyle }}" onClick="{{ closeMenu }}"></div>
+  <div style="{{ panelStyle }}">
+    <div style="display:flex; justify-content:flex-end;">
+      <button onClick="{{ closeMenu }}" style="display:flex; align-items:center; gap:12px; background:none; border:none; cursor:pointer; font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:0.28em; font-weight:600; color:#4a463f; text-transform:uppercase; padding:0;">
+        <span>Cerrar</span>
+        <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; border:1px solid rgba(20,17,13,0.25); font-size:16px; line-height:1; color:#14110d;">×</span>
+      </button>
+    </div>
+
+    <nav style="{{ navListStyle }}">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
+        <a href="#" onClick="{{ closeMenu }}" style="{{ item.animStyle }}">
+          <span style="font-family:'Playfair Display',serif; font-size:clamp(28px, 3.6vw, 46px); font-weight:700; color:#14110d; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.02;">{{ item.roman }}</span>
+          <span style="font-family:'Playfair Display',serif; font-size:clamp(28px, 3.6vw, 46px); font-style:italic; font-weight:500; color:#b0a99e; line-height:1.02;">{{ item.italic }}</span>
+        </a>
+      </sc-for>
+    </nav>
+
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <span style="color:#8c877d; font-size:11px; letter-spacing:0.3em; font-weight:600; text-transform:uppercase;">Síguenos</span>
+      <div style="display:flex; gap:24px; flex-wrap:wrap;">
+        <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Instagram</a>
+        <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Facebook</a>
+        <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Twitter</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.videoRef = React.createRef();
+    this.audioRef = React.createRef();
+    this._fadeTimer = null;
+    this.state = {
+      menuOpen: false,
+      soundOn: false,
+      isMobile: (typeof window !== 'undefined' && window.innerWidth <= 760)
+    };
+    this.handleResize = this.handleResize.bind(this);
+  }
+
+  tryPlayVideo = () => {
+    const v = this.videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  };
+
+  componentDidMount() {
+    this.tryPlayVideo();
+    // Some mobile browsers (Edge/iOS) block muted autoplay until first interaction.
+    this._kick = () => { this.tryPlayVideo(); };
+    ['touchstart', 'pointerdown', 'click', 'scroll'].forEach(function (ev) {
+      window.addEventListener(ev, this._kick, { once: true, passive: true });
+    }, this);
+    const v = this.videoRef.current;
+    if (v) v.addEventListener('canplay', this._kick);
+    window.addEventListener('resize', this.handleResize);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+    clearInterval(this._fadeTimer);
+  }
+  handleResize() {
+    const m = window.innerWidth <= 760;
+    if (m !== this.state.isMobile) this.setState({ isMobile: m });
+  }
+
+  openMenu = () => this.setState({ menuOpen: true });
+  closeMenu = () => this.setState({ menuOpen: false });
+  fadeAudio = (to) => {
+    const a = this.audioRef.current;
+    if (!a) return;
+    clearInterval(this._fadeTimer);
+    const step = (to - a.volume) / 16;
+    this._fadeTimer = setInterval(() => {
+      let nv = a.volume + step;
+      if ((step > 0 && nv >= to) || (step < 0 && nv <= to)) { nv = to; clearInterval(this._fadeTimer); }
+      a.volume = Math.max(0, Math.min(1, nv));
+      if (to === 0 && a.volume === 0) a.pause();
+    }, 45);
+  };
+
+  toggleSound = () => {
+    const a = this.audioRef.current;
+    const next = !this.state.soundOn;
+    if (a) {
+      if (next) {
+        a.volume = 0;
+        const p = a.play();
+        if (p && p.catch) p.catch(() => {});
+        this.fadeAudio(0.85);
+      } else {
+        this.fadeAudio(0);
+      }
+    }
+    this.setState({ soundOn: next });
+  };
+
+  renderVals() {
+    const m = this.state.isMobile;
+    const open = this.state.menuOpen;
+
+    const data = [
+      { roman: 'Inicio', italic: '' },
+      { roman: 'Nuestras', italic: 'Rutas' },
+      { roman: 'Experiencia', italic: 'Rafting' },
+      { roman: 'Galería &', italic: 'Eventos' },
+      { roman: 'Academia', italic: '' },
+      { roman: 'Contacto', italic: '' }
+    ];
+    const navItems = data.map((d, i) => {
+      const delay = open ? (0.2 + i * 0.06) : 0;
+      const animStyle = [
+        "display:flex",
+        "flex-wrap:wrap",
+        "align-items:baseline",
+        "column-gap:0.25em",
+        "text-decoration:none",
+        "opacity:" + (open ? 1 : 0),
+        "transform:translateX(" + (open ? "0" : "22px") + ")",
+        "transition:opacity 0.6s ease " + delay + "s, transform 0.6s cubic-bezier(0.16,1,0.3,1) " + delay + "s"
+      ].join(";");
+      return { roman: d.roman, italic: d.italic, animStyle };
+    });
+
+    return {
+      videoRef: this.videoRef,
+      audioRef: this.audioRef,
+      openMenu: this.openMenu,
+      closeMenu: this.closeMenu,
+      toggleSound: this.toggleSound,
+      soundIcon: this.state.soundOn ? '♪' : '⊘',
+      soundLabel: this.state.soundOn ? 'Sonido' : 'Silencio',
+      navItems,
+
+      headerStyle: "position:fixed; top:0; left:0; right:0; z-index:30; display:flex; justify-content:space-between; align-items:center; padding:" + (m ? "20px 20px" : "34px 48px") + "; animation:fadeIn 1s ease both 0.1s;",
+      brandStyle: "font-size:" + (m ? "11px" : "13px") + "; letter-spacing:0.3em; font-weight:600; color:#f4f1ec; text-transform:uppercase; text-decoration:none; max-width:60%;",
+      menuBtnStyle: "display:flex; align-items:center; gap:" + (m ? "8px" : "12px") + "; background:none; border:none; cursor:pointer; font-family:'Archivo',sans-serif; font-size:" + (m ? "11px" : "13px") + "; letter-spacing:0.3em; font-weight:600; color:#f4f1ec; text-transform:uppercase; padding:0;",
+
+      sectionStyle: "position:relative; z-index:10; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; padding:" + (m ? "76px 20px 80px" : "128px 48px 48px") + ";",
+
+      bottomRowStyle: "margin-top:auto; display:flex; " + (m
+        ? "flex-direction:column; align-items:flex-start; gap:16px;"
+        : "justify-content:space-between; align-items:flex-end; gap:48px; flex-wrap:wrap;"),
+
+      paraStyle: "margin:0; max-width:520px; color:#ded9cf; font-size:" + (m ? "10.5px" : "13px") + "; line-height:" + (m ? "1.65" : "2.1") + "; letter-spacing:" + (m ? "0.16em" : "0.22em") + "; text-transform:uppercase; animation:softUp 1s ease both 0.85s;",
+
+      reserveBtnStyle: "flex:none; " + (m ? "width:100%; " : "") + "background:#f7f4ef; border:none; cursor:pointer; padding:" + (m ? "16px 26px" : "30px 56px") + "; color:#0a0a0a; font-family:'Archivo',sans-serif; font-size:" + (m ? "12.5px" : "14px") + "; letter-spacing:0.26em; font-weight:600; text-transform:uppercase; transition:background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease; animation:softUp 1s ease both 0.95s;",
+
+      heroOverlayStyle: "position:absolute; inset:0; z-index:1; background:" + (m
+        ? "linear-gradient(180deg, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.28) 26%, rgba(8,8,8,0.32) 52%, rgba(8,8,8,0.66) 100%)"
+        : "linear-gradient(180deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.55) 38%, rgba(8,8,8,0.78) 100%)") + ";",
+
+      soundBtnStyle: "position:fixed; z-index:30; " + (m ? "bottom:22px; left:20px;" : "bottom:40px; left:50%; transform:translateX(-50%);") + " display:flex; align-items:center; gap:10px; background:rgba(8,8,8,0.4); border:1px solid rgba(247,244,239,0.28); border-radius:40px; cursor:pointer; padding:" + (m ? "8px 14px" : "10px 18px") + "; font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:0.24em; font-weight:600; color:#cfcabf; text-transform:uppercase; transition:border-color 0.3s ease, color 0.3s ease; animation:fadeIn 1s ease both 1.2s;",
+
+      overlayStyle: "position:fixed; inset:0; z-index:50; background:rgba(6,6,6,0.42); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); transition:opacity 0.5s ease, visibility 0.5s ease; opacity:" + (open ? 1 : 0) + "; visibility:" + (open ? "visible" : "hidden") + ";",
+
+      panelStyle: "position:fixed; top:0; right:0; z-index:51; height:100%; box-sizing:border-box; width:" + (m ? "100%" : "min(600px, 46vw)") + "; background:#f6f3ee; box-shadow:-30px 0 80px rgba(0,0,0,0.35); transform:translateX(" + (open ? "0" : "101%") + "); transition:transform 0.6s cubic-bezier(0.16,1,0.3,1); display:flex; flex-direction:column; padding:" + (m ? "24px 24px 32px" : "34px 44px 44px") + ";",
+
+      navListStyle: "margin:auto 0; display:flex; flex-direction:column; gap:" + (m ? "6px" : "10px") + ";"
+    };
+  }
+}
+</script>
+</body>
+</html>
