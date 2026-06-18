@@ -20,7 +20,7 @@
 </style>
 </helmet>
 
-<div style="position:relative; width:100%; min-height:100vh; background:#080808; font-family:'Archivo',sans-serif; overflow:hidden;">
+<div style="position:relative; width:100%; min-height:100vh; min-height:100dvh; background:#080808; font-family:'Archivo',sans-serif; overflow-x:hidden;">
 
   <video ref="{{ videoRef }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" webkit-playsinline="true" poster="https://images.pexels.com/videos/2286306/free-video-2286306.jpg?auto=compress&cs=tinysrgb&w=1600" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
     <source src="https://videos.pexels.com/video-files/2286306/2286306-hd_1280_720_24fps.mp4" type="video/mp4">
@@ -42,7 +42,7 @@
   </header>
 
   <section data-screen-label="Hero" style="{{ sectionStyle }}">
-    <h1 style="margin:0; max-width:1100px; font-family:'Playfair Display',serif; color:#f7f4ef; font-weight:800; line-height:0.9; font-size:clamp(38px, 11.5vw, 188px); letter-spacing:-0.01em;">
+    <h1 style="margin:0; max-width:1100px; font-family:'Playfair Display',serif; color:#f7f4ef; font-weight:800; line-height:0.9; font-size:clamp(34px, min(10.5vw, 15vh), 168px); letter-spacing:-0.01em;">
       <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.12s;">Domina la</span></span>
       <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.24s;">Corriente.</span></span>
       <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.36s;">Abraza el</span></span>
@@ -51,16 +51,17 @@
 
     <div style="{{ bottomRowStyle }}">
       <p style="{{ paraStyle }}">Únete a una comunidad de aventureros que buscan la adrenalina de los rápidos y la calma del valle. Tu próxima gran aventura empieza aquí.</p>
-      <button style="{{ reserveBtnStyle }}" style-hover="background:#0a0a0a; color:#f7f4ef; box-shadow:inset 0 0 0 1px #f7f4ef;">
-        Reserva tu <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; text-transform:none; font-size:18px; letter-spacing:0.02em;">Aventura</span>
-      </button>
+      <div style="{{ actionGroupStyle }}">
+        <button onClick="{{ toggleSound }}" aria-label="{{ soundLabel }}" title="{{ soundLabel }}" style="{{ soundBtnStyle }}" style-hover="border-color:rgba(247,244,239,0.7); color:#f7f4ef;">
+          <span style="font-size:14px; line-height:1;">{{ soundIcon }}</span>
+          <span style="{{ soundLabelStyle }}">{{ soundLabel }}</span>
+        </button>
+        <button style="{{ reserveBtnStyle }}" style-hover="background:#0a0a0a; color:#f7f4ef; box-shadow:inset 0 0 0 1px #f7f4ef;">
+          Reserva tu <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; text-transform:none; font-size:18px; letter-spacing:0.02em;">Aventura</span>
+        </button>
+      </div>
     </div>
   </section>
-
-  <button onClick="{{ toggleSound }}" aria-label="sonido" style="{{ soundBtnStyle }}" style-hover="border-color:rgba(247,244,239,0.7); color:#f7f4ef;">
-    <span style="font-size:13px;">{{ soundIcon }}</span>
-    <span>{{ soundLabel }}</span>
-  </button>
 
   <!-- MENU: blurred backdrop + white side panel -->
   <div style="{{ overlayStyle }}" onClick="{{ closeMenu }}"></div>
@@ -211,21 +212,27 @@ class Component extends DCLogic {
       brandStyle: "font-size:" + (m ? "11px" : "13px") + "; letter-spacing:0.3em; font-weight:600; color:#f4f1ec; text-transform:uppercase; text-decoration:none; max-width:60%;",
       menuBtnStyle: "display:flex; align-items:center; gap:" + (m ? "8px" : "12px") + "; background:none; border:none; cursor:pointer; font-family:'Archivo',sans-serif; font-size:" + (m ? "11px" : "13px") + "; letter-spacing:0.3em; font-weight:600; color:#f4f1ec; text-transform:uppercase; padding:0;",
 
-      sectionStyle: "position:relative; z-index:10; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; padding:" + (m ? "76px 20px 80px" : "128px 48px 48px") + ";",
+      sectionStyle: "position:relative; z-index:10; min-height:100vh; min-height:100dvh; box-sizing:border-box; display:flex; flex-direction:column; padding:" + (m ? "68px 20px 30px" : "120px 48px 44px") + ";",
 
       bottomRowStyle: "margin-top:auto; display:flex; " + (m
-        ? "flex-direction:column; align-items:flex-start; gap:16px;"
+        ? "flex-direction:column; align-items:stretch; gap:20px;"
         : "justify-content:space-between; align-items:flex-end; gap:48px; flex-wrap:wrap;"),
 
       paraStyle: "margin:0; max-width:520px; color:#ded9cf; font-size:" + (m ? "10.5px" : "13px") + "; line-height:" + (m ? "1.65" : "2.1") + "; letter-spacing:" + (m ? "0.16em" : "0.22em") + "; text-transform:uppercase; animation:softUp 1s ease both 0.85s;",
 
-      reserveBtnStyle: "flex:none; " + (m ? "width:100%; " : "") + "background:#f7f4ef; border:none; cursor:pointer; padding:" + (m ? "16px 26px" : "30px 56px") + "; color:#0a0a0a; font-family:'Archivo',sans-serif; font-size:" + (m ? "12.5px" : "14px") + "; letter-spacing:0.26em; font-weight:600; text-transform:uppercase; transition:background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease; animation:softUp 1s ease both 0.95s;",
+      actionGroupStyle: "display:flex; gap:12px; " + (m
+        ? "width:100%; align-items:stretch;"
+        : "align-items:center; flex:none; margin-left:auto;") + " animation:softUp 1s ease both 0.95s;",
 
-      heroOverlayStyle: "position:absolute; inset:0; z-index:1; background:" + (m
+      reserveBtnStyle: "" + (m ? "flex:1 1 auto; min-width:0; " : "flex:none; ") + "background:#f7f4ef; border:none; cursor:pointer; padding:" + (m ? "17px 20px" : "30px 56px") + "; color:#0a0a0a; font-family:'Archivo',sans-serif; font-size:" + (m ? "12px" : "14px") + "; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; white-space:nowrap; transition:background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;",
+
+      heroOverlayStyle: "position:relative; z-index:1; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; background:" + (m
         ? "linear-gradient(180deg, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.28) 26%, rgba(8,8,8,0.32) 52%, rgba(8,8,8,0.66) 100%)"
         : "linear-gradient(180deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.55) 38%, rgba(8,8,8,0.78) 100%)") + ";",
 
-      soundBtnStyle: "position:fixed; z-index:30; " + (m ? "bottom:22px; left:20px;" : "bottom:40px; left:50%; transform:translateX(-50%);") + " display:flex; align-items:center; gap:10px; background:rgba(8,8,8,0.4); border:1px solid rgba(247,244,239,0.28); border-radius:40px; cursor:pointer; padding:" + (m ? "8px 14px" : "10px 18px") + "; font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:0.24em; font-weight:600; color:#cfcabf; text-transform:uppercase; transition:border-color 0.3s ease, color 0.3s ease; animation:fadeIn 1s ease both 1.2s;",
+      soundBtnStyle: "flex:none; display:flex; align-items:center; justify-content:center; gap:10px; box-sizing:border-box; " + (m ? "width:54px; padding:0;" : "padding:0 22px; height:64px;") + " background:rgba(8,8,8,0.4); border:1px solid rgba(247,244,239,0.4); border-radius:40px; cursor:pointer; font-family:'Archivo',sans-serif; font-size:11px; letter-spacing:0.24em; font-weight:600; color:#e8e3d8; text-transform:uppercase; transition:border-color 0.3s ease, color 0.3s ease;",
+
+      soundLabelStyle: m ? "display:none;" : "display:inline;",
 
       overlayStyle: "position:fixed; inset:0; z-index:50; background:rgba(6,6,6,0.42); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); transition:opacity 0.5s ease, visibility 0.5s ease; opacity:" + (open ? 1 : 0) + "; visibility:" + (open ? "visible" : "hidden") + ";",
 
