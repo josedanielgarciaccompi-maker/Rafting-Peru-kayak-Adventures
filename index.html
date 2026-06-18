@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./translations.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -35,29 +36,36 @@
 
   <header style="{{ headerStyle }}">
     <a href="#" style="{{ brandStyle }}">Kayak Rafting Peru</a>
-    <button onClick="{{ openMenu }}" style="{{ menuBtnStyle }}">
-      <span>Menú</span>
-      <span style="font-size:20px; font-weight:300; line-height:1;">+</span>
-    </button>
+    <div style="{{ headerRightStyle }}">
+      <div style="{{ langSwitchStyle }}">
+        <button onClick="{{ setEN }}" aria-label="English" style="{{ enBtnStyle }}">EN</button>
+        <span style="color:#f4f1ec; opacity:0.4; font-size:11px;">/</span>
+        <button onClick="{{ setES }}" aria-label="Español" style="{{ esBtnStyle }}">ES</button>
+      </div>
+      <button onClick="{{ openMenu }}" style="{{ menuBtnStyle }}">
+        <span>{{ menuLabel }}</span>
+        <span style="font-size:20px; font-weight:300; line-height:1;">+</span>
+      </button>
+    </div>
   </header>
 
   <section data-screen-label="Hero" style="{{ sectionStyle }}">
     <h1 style="margin:0; max-width:1100px; font-family:'Playfair Display',serif; color:#f7f4ef; font-weight:800; line-height:0.9; font-size:clamp(34px, min(10.5vw, 15vh), 168px); letter-spacing:-0.01em;">
-      <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.12s;">Domina la</span></span>
-      <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.24s;">Corriente.</span></span>
-      <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.36s;">Abraza el</span></span>
-      <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.48s;">Río</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.12s;">{{ heroLine1 }}</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.24s;">{{ heroLine2 }}</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.36s;">{{ heroLine3 }}</span></span>
+      <span style="display:block; overflow:hidden;"><span style="display:block; font-style:italic; font-weight:600; animation:lineUp 1s cubic-bezier(0.16,1,0.3,1) both; animation-delay:0.48s;">{{ heroLine4 }}</span></span>
     </h1>
 
     <div style="{{ bottomRowStyle }}">
-      <p style="{{ paraStyle }}">Únete a una comunidad de aventureros que buscan la adrenalina de los rápidos y la calma del valle. Tu próxima gran aventura empieza aquí.</p>
+      <p style="{{ paraStyle }}">{{ introText }}</p>
       <div style="{{ actionGroupStyle }}">
         <button onClick="{{ toggleSound }}" aria-label="{{ soundLabel }}" title="{{ soundLabel }}" style="{{ soundBtnStyle }}" style-hover="border-color:rgba(247,244,239,0.7); color:#f7f4ef;">
           <span style="font-size:14px; line-height:1;">{{ soundIcon }}</span>
           <span style="{{ soundLabelStyle }}">{{ soundLabel }}</span>
         </button>
         <button style="{{ reserveBtnStyle }}" style-hover="background:#0a0a0a; color:#f7f4ef; box-shadow:inset 0 0 0 1px #f7f4ef;">
-          Reserva tu <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; text-transform:none; font-size:18px; letter-spacing:0.02em;">Aventura</span>
+          {{ reserveText }} <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; text-transform:none; font-size:18px; letter-spacing:0.02em;">{{ reserveWord }}</span>
         </button>
       </div>
     </div>
@@ -68,7 +76,7 @@
   <div style="{{ panelStyle }}">
     <div style="display:flex; justify-content:flex-end;">
       <button onClick="{{ closeMenu }}" style="display:flex; align-items:center; gap:12px; background:none; border:none; cursor:pointer; font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:0.28em; font-weight:600; color:#4a463f; text-transform:uppercase; padding:0;">
-        <span>Cerrar</span>
+        <span>{{ closeLabel }}</span>
         <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; border:1px solid rgba(20,17,13,0.25); font-size:16px; line-height:1; color:#14110d;">×</span>
       </button>
     </div>
@@ -83,7 +91,7 @@
     </nav>
 
     <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;">
-      <span style="color:#8c877d; font-size:11px; letter-spacing:0.3em; font-weight:600; text-transform:uppercase;">Síguenos</span>
+      <span style="color:#8c877d; font-size:11px; letter-spacing:0.3em; font-weight:600; text-transform:uppercase;">{{ followLabel }}</span>
       <div style="display:flex; gap:24px; flex-wrap:wrap;">
         <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Instagram</a>
         <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Facebook</a>
@@ -104,10 +112,41 @@ class Component extends DCLogic {
     this.state = {
       menuOpen: false,
       soundOn: false,
-      isMobile: (typeof window !== 'undefined' && window.innerWidth <= 760)
+      isMobile: (typeof window !== 'undefined' && window.innerWidth <= 760),
+      lang: this.detectLang()
     };
     this.handleResize = this.handleResize.bind(this);
   }
+
+  // Idioma por defecto: inglés. Prioridad: preferencia guardada > idioma/región del navegador.
+  detectLang() {
+    try {
+      const saved = localStorage.getItem('krp_lang');
+      if (saved === 'en' || saved === 'es') return saved;
+    } catch (e) {}
+    try {
+      const spanish = (typeof window !== 'undefined' && window.SPANISH_COUNTRIES) || [];
+      const list = (navigator.languages && navigator.languages.length)
+        ? navigator.languages
+        : [navigator.language || navigator.userLanguage || 'en'];
+      for (let i = 0; i < list.length; i++) {
+        const tag = (list[i] || '').toLowerCase();
+        if (!tag) continue;
+        if (tag === 'es' || tag.indexOf('es-') === 0) return 'es';
+        const region = tag.split('-')[1];
+        if (region && spanish.indexOf(region.toUpperCase()) !== -1) return 'es';
+      }
+    } catch (e) {}
+    return 'en';
+  }
+
+  setLang = (lang) => {
+    if (lang !== 'en' && lang !== 'es') return;
+    try { localStorage.setItem('krp_lang', lang); } catch (e) {}
+    this.setState({ lang });
+  };
+  setEN = () => this.setLang('en');
+  setES = () => this.setLang('es');
 
   tryPlayVideo = () => {
     const v = this.videoRef.current;
@@ -174,15 +213,12 @@ class Component extends DCLogic {
   renderVals() {
     const m = this.state.isMobile;
     const open = this.state.menuOpen;
+    const lang = (this.state.lang === 'es') ? 'es' : 'en';
+    const dict = (typeof window !== 'undefined' && window.translations) ? window.translations : {};
+    const t = dict[lang] || dict.en || {};
+    const hero = t.hero || [];
 
-    const data = [
-      { roman: 'Inicio', italic: '' },
-      { roman: 'Nuestras', italic: 'Rutas' },
-      { roman: 'Experiencia', italic: 'Rafting' },
-      { roman: 'Galería &', italic: 'Eventos' },
-      { roman: 'Academia', italic: '' },
-      { roman: 'Contacto', italic: '' }
-    ];
+    const data = t.nav || [];
     const navItems = data.map((d, i) => {
       const delay = open ? (0.2 + i * 0.06) : 0;
       const animStyle = [
@@ -204,9 +240,26 @@ class Component extends DCLogic {
       openMenu: this.openMenu,
       closeMenu: this.closeMenu,
       toggleSound: this.toggleSound,
+      setEN: this.setEN,
+      setES: this.setES,
       soundIcon: this.state.soundOn ? '♪' : '⊘',
-      soundLabel: this.state.soundOn ? 'Sonido' : 'Silencio',
+      soundLabel: this.state.soundOn ? (t.soundOn || 'Sound') : (t.soundOff || 'Mute'),
+      menuLabel: t.menu || 'Menu',
+      heroLine1: hero[0] || '',
+      heroLine2: hero[1] || '',
+      heroLine3: hero[2] || '',
+      heroLine4: hero[3] || '',
+      introText: t.intro || '',
+      reserveText: t.reserveText || '',
+      reserveWord: t.reserveWord || '',
+      closeLabel: t.close || 'Close',
+      followLabel: t.follow || '',
       navItems,
+
+      headerRightStyle: "display:flex; align-items:center; gap:" + (m ? "13px" : "30px") + ";",
+      langSwitchStyle: "display:flex; align-items:center; gap:" + (m ? "7px" : "9px") + ";",
+      enBtnStyle: "background:none; border:none; cursor:pointer; padding:0; font-family:'Archivo',sans-serif; font-size:" + (m ? "10px" : "12px") + "; letter-spacing:" + (m ? "0.16em" : "0.24em") + "; font-weight:600; text-transform:uppercase; transition:color 0.3s ease; color:" + (lang === 'en' ? '#f4f1ec' : 'rgba(244,241,236,0.45)') + ";",
+      esBtnStyle: "background:none; border:none; cursor:pointer; padding:0; font-family:'Archivo',sans-serif; font-size:" + (m ? "10px" : "12px") + "; letter-spacing:" + (m ? "0.16em" : "0.24em") + "; font-weight:600; text-transform:uppercase; transition:color 0.3s ease; color:" + (lang === 'es' ? '#f4f1ec' : 'rgba(244,241,236,0.45)') + ";",
 
       headerStyle: "position:fixed; top:0; left:0; right:0; z-index:30; display:flex; justify-content:space-between; align-items:center; padding:" + (m ? "20px 20px" : "34px 48px") + "; animation:fadeIn 1s ease both 0.1s;",
       brandStyle: "font-size:" + (m ? "11px" : "13px") + "; letter-spacing:0.3em; font-weight:600; color:#f4f1ec; text-transform:uppercase; text-decoration:none; max-width:60%;",
