@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "line1": "Master the",
+    "line2": "Current.",
+    "line3": "Embrace the",
+    "line4": "River"
+  },
+  "nav": {
+    "home": "Home",
+    "routes": "Our Routes",
+    "rafting": "Rafting Experience",
+    "gallery": "Gallery & Events",
+    "academy": "Academy",
+    "contact": "Contact"
+  },
+  "cta": {
+    "reserve": "Book your",
+    "adventure": "Adventure"
+  },
+  "intro": "Join a community of adventurers chasing the adrenaline of the rapids and the calm of the valley. Your next great adventure starts here.",
+  "menu": "Menu",
+  "close": "Close",
+  "follow": "Follow Us",
+  "sound": {
+    "on": "Sound",
+    "off": "Mute"
+  }
+}

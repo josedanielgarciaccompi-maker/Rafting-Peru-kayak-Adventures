@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "line1": "Domina la",
+    "line2": "Corriente.",
+    "line3": "Abraza el",
+    "line4": "Río"
+  },
+  "nav": {
+    "home": "Inicio",
+    "routes": "Nuestras Rutas",
+    "rafting": "Experiencia Rafting",
+    "gallery": "Galería & Eventos",
+    "academy": "Academia",
+    "contact": "Contacto"
+  },
+  "cta": {
+    "reserve": "Reserva tu",
+    "adventure": "Aventura"
+  },
+  "intro": "Únete a una comunidad de aventureros que buscan la adrenalina de los rápidos y la calma del valle. Tu próxima gran aventura empieza aquí.",
+  "menu": "Menú",
+  "close": "Cerrar",
+  "follow": "Síguenos",
+  "sound": {
+    "on": "Sonido",
+    "off": "Silencio"
+  }
+}
