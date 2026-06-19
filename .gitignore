@@ -23,3 +23,8 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Claude Design internal files
+apps/web/public/_ds/
+apps/web/public/.thumbnail
+apps/web/public/uploads/imagen-*.png
