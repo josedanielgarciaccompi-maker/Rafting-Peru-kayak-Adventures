@@ -16,7 +16,9 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@rafting-peru/config": "workspace:*",
     "@rafting-peru/contracts": "workspace:*",
+    "@tailwindcss/postcss": "^4.3.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
