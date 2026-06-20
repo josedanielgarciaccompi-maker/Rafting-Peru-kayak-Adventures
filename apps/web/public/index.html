@@ -82,6 +82,7 @@
           <span style="font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:#ded9cf;">{{ locationSub }}</span>
         </span>
       </div>
+    </div>
   </section>
 
   <!-- MENU: blurred backdrop + white side panel -->
@@ -344,11 +345,11 @@ class Component extends DCLogic {
 
       navListStyle: "margin:auto 0; display:flex; flex-direction:column; gap:" + (m ? "6px" : "10px") + ";",
 
-      locationChipWrapStyle: "position:absolute; z-index:15; pointer-events:none; " + (m
-        ? "left:20px; right:20px; bottom:calc(150px + env(safe-area-inset-bottom, 0px)); display:flex; justify-content:flex-start;"
-        : "right:48px; bottom:170px; display:flex; justify-content:flex-end;"),
+      locationChipWrapStyle: m
+        ? "order:-1; margin:0 0 16px 0; align-self:flex-start; z-index:15; pointer-events:none; display:flex; justify-content:flex-start;"
+        : "position:absolute; z-index:15; pointer-events:none; right:48px; bottom:170px; display:flex; justify-content:flex-end;",
 
-      locationChipStyle: "pointer-events:auto; display:inline-flex; align-items:center; gap:14px; padding:14px 22px; background:rgba(8,8,8,0.55); border:1px solid var(--bone-veil-25, rgba(247,244,239,0.25)); border-radius:6px; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); animation:softUp 1s ease both 1.1s;"
+      locationChipStyle: "pointer-events:auto; display:inline-flex; align-items:center; gap:" + (m ? "8px" : "14px") + "; padding:" + (m ? "8px 12px" : "14px 22px") + "; background:rgba(8,8,8,0.55); border:1px solid var(--bone-veil-25, rgba(247,244,239,0.25)); border-radius:" + (m ? "4px" : "6px") + "; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); animation:softUp 1s ease both 1.1s;"
     };
   }
 }
