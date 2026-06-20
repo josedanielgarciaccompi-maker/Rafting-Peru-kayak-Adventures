@@ -17,6 +17,8 @@ window.translations = {
     soundOff: "Mute",
     close: "Close",
     follow: "Follow Us",
+    location: { name: "Lunahuaná River", sub: "Lunahuaná, Lima — Peru" },
+    brand: { line1: "Rafting Perú", line2: "Kayak Adventures" },
     nav: [
       { roman: "Home", italic: "" },
       { roman: "Our", italic: "Routes" },
@@ -36,6 +38,8 @@ window.translations = {
     soundOff: "Silencio",
     close: "Cerrar",
     follow: "Síguenos",
+    location: { name: "Río Lunahuaná", sub: "Lunahuaná, Lima — Perú" },
+    brand: { line1: "Rafting Perú", line2: "Kayak Adventures" },
     nav: [
       { roman: "Inicio", italic: "" },
       { roman: "Nuestras", italic: "Rutas" },
