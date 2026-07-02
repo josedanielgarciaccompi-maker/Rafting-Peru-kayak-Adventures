@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Nuestras Aventuras — Rafting Perú Kayak Adventures</title>
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/tokens/colors.css">
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/tokens/typography.css">
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/tokens/effects.css">
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/tokens/motion.css">
+<link rel="stylesheet" href="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/styles.css">
+<script src="_ds/rafting-per-design-system-eea0762f-370d-4de4-901d-b79f4e579e91/_ds_bundle.js"></script>
+<script src="./translations.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #f4f1ec; }
+  @keyframes softUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:#f4f1ec; font-family:'Archivo',sans-serif; color:#14110d; overflow-x:hidden;">
+
+  <header style="{{ headerStyle }}">
+    <div style="{{ headerLeftStyle }}">
+      <a href="./index.html" aria-label="{{ backAria }}" style="{{ backLinkStyle }}" style-hover="opacity:0.5;">
+        <span style="font-size:16px; line-height:1;">←</span>
+        <span>{{ backLabel }}</span>
+      </a>
+      <span style="{{ headerDividerStyle }}"></span>
+      <a href="./index.html" style="{{ brandStyle }}">
+        <img src="./assets/logo.jpeg" alt="Rafting Perú &amp; Kayak Adventures" style="width:40px; height:40px; border-radius:50%; object-fit:cover; display:block; flex:none; box-shadow:0 0 0 1px rgba(20,17,13,0.15);">
+        <span style="display:flex; flex-direction:column; line-height:1; text-transform:uppercase;">
+          <span style="font-size:14px; letter-spacing:0.18em; font-weight:700; color:#14110d;">{{ brandLine1 }}</span>
+          <span style="font-size:11px; letter-spacing:0.24em; font-weight:600; color:#b25636; margin-top:4px;">{{ brandLine2 }}</span>
+        </span>
+      </a>
+    </div>
+    <div style="{{ headerRightStyle }}">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button onClick="{{ setEN }}" aria-label="English" style="{{ enBtnStyle }}">EN</button>
+        <span style="color:#14110d; opacity:0.35; font-size:11px;">/</span>
+        <button onClick="{{ setES }}" aria-label="Español" style="{{ esBtnStyle }}">ES</button>
+      </div>
+      <button onClick="{{ openMenu }}" style="{{ menuBtnStyle }}">
+        <span>{{ menuLabel }}</span>
+        <span style="font-size:20px; font-weight:300; line-height:1;">+</span>
+      </button>
+    </div>
+  </header>
+
+  <main style="{{ mainStyle }}">
+    <section data-screen-label="Catalogo intro" style="{{ heroStyle }}">
+      <span style="{{ eyebrowStyle }}">{{ eyebrow }}</span>
+      <h1 style="{{ h1Style }}">{{ titleRoman }} <span style="font-style:italic; font-weight:600;">{{ titleItalic }}</span></h1>
+      <p style="{{ introStyle }}">{{ introText }}</p>
+    </section>
+
+    <sc-for list="{{ sections }}" as="cat" hint-placeholder-count="3">
+      <section data-screen-label="{{ cat.label }}" style="margin:0 0 76px;">
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:28px; max-width:760px;">
+          <span style="font-family:'Archivo',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#b25636;">{{ cat.num }}</span>
+          <h2 style="margin:0; font-family:'Playfair Display',serif; font-weight:800; color:#14110d; line-height:1; letter-spacing:-0.01em; font-size:clamp(32px, 4vw, 54px);">{{ cat.roman }} <span style="font-style:italic; font-weight:500; color:#8c877d;">{{ cat.italic }}</span></h2>
+          <p style="margin:0; font-family:'Playfair Display',serif; font-style:italic; font-size:17px; line-height:1.5; color:#4a463f;">{{ cat.sub }}</p>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap:26px;">
+          <sc-for list="{{ cat.items }}" as="item" hint-placeholder-count="2">
+            <article style="display:flex; flex-direction:column; background:#f7f4ef; border:1px solid rgba(20,17,13,0.10); box-shadow:var(--shadow-card, 0 10px 30px rgba(6,6,6,0.08)); transition:box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);" style-hover="box-shadow:var(--shadow-card-lg, 0 18px 50px rgba(6,6,6,0.16));">
+              <div style="position:relative; aspect-ratio:16/10; background:#ded9cf; overflow:hidden;">
+                <sc-if value="{{ item.photo }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ item.photo }}" alt="{{ item.alt }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+                </sc-if>
+                <sc-if value="{{ item.slotId }}" hint-placeholder-val="{{ false }}">
+                  <image-slot id="{{ item.slotId }}" shape="rect" placeholder="{{ item.slotPh }}" style="position:absolute; inset:0; width:100%; height:100%; display:block;"></image-slot>
+                </sc-if>
+                <sc-if value="{{ item.chipText }}" hint-placeholder-val="{{ false }}">
+                  <span style="{{ item.chipStyle }}">{{ item.chipText }}</span>
+                </sc-if>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:12px; padding:20px 22px 22px; flex:1; box-sizing:border-box;">
+                <h3 style="margin:0; font-family:'Playfair Display',serif; font-weight:700; font-size:27px; line-height:1.05; color:#14110d;">{{ item.roman }} <span style="font-style:italic; font-weight:500; color:#4a463f;">{{ item.italic }}</span></h3>
+                <p style="margin:0; font-family:'Archivo',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#4a463f; line-height:1.8;">{{ item.meta }}</p>
+                <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-top:auto; min-height:32px;">
+                  <sc-if value="{{ item.price }}" hint-placeholder-val="{{ false }}">
+                    <span style="font-family:'Playfair Display',serif; font-weight:800; font-size:26px; color:#14110d;">{{ item.price }}</span>
+                    <span style="font-family:'Archivo',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#4a463f;">{{ item.validity }}</span>
+                  </sc-if>
+                  <sc-if value="{{ item.consult }}" hint-placeholder-val="{{ false }}">
+                    <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:500; font-size:19px; color:#4a463f;">{{ item.consult }}</span>
+                  </sc-if>
+                </div>
+                <a href="{{ item.wa }}" target="_blank" rel="noopener" aria-label="{{ item.aria }}" style="display:flex; align-items:center; justify-content:center; gap:10px; min-height:50px; box-sizing:border-box; padding:14px 18px; background:#3d6d2c; color:#f7f4ef; text-decoration:none; font-family:'Archivo',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; text-align:center; transition:background 0.3s ease, box-shadow 0.3s ease;" style-hover="background:#4f8a3a; box-shadow:inset 0 0 0 1px #f7f4ef;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+                  <span>{{ ctaLabel }}</span>
+                </a>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+  </main>
+
+  <sc-if value="{{ showFab }}" hint-placeholder-val="{{ false }}">
+    <a href="{{ fabWa }}" target="_blank" rel="noopener" aria-label="{{ fabAria }}" style="{{ fabStyle }}">
+      <span style="{{ fabPillStyle }}">{{ fabLabel }}</span>
+      <span style="{{ fabCircleStyle }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+      </span>
+    </a>
+  </sc-if>
+
+  <!-- MENU: blurred backdrop + bone side panel (same as landing) -->
+  <div style="{{ overlayStyle }}" onClick="{{ closeMenu }}"></div>
+  <div style="{{ panelStyle }}">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+      <img src="./assets/logo.jpeg" alt="Rafting Perú &amp; Kayak Adventures" style="width:56px; height:56px; border-radius:50%; object-fit:cover; display:block;">
+      <button onClick="{{ closeMenu }}" style="display:flex; align-items:center; gap:12px; background:none; border:none; cursor:pointer; font-family:'Archivo',sans-serif; font-size:12px; letter-spacing:0.28em; font-weight:600; color:#4a463f; text-transform:uppercase; padding:0;">
+        <span>{{ closeLabel }}</span>
+        <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; border:1px solid rgba(20,17,13,0.25); font-size:16px; line-height:1; color:#14110d;">×</span>
+      </button>
+    </div>
+
+    <nav style="{{ navListStyle }}">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" onClick="{{ closeMenu }}" style="{{ item.animStyle }}">
+          <span style="font-family:'Playfair Display',serif; font-size:clamp(28px, 3.6vw, 46px); font-weight:700; color:#14110d; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.02;">{{ item.roman }}</span>
+          <span style="font-family:'Playfair Display',serif; font-size:clamp(28px, 3.6vw, 46px); font-style:italic; font-weight:500; color:#b0a99e; line-height:1.02;">{{ item.italic }}</span>
+        </a>
+      </sc-for>
+    </nav>
+
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <span style="color:#8c877d; font-size:11px; letter-spacing:0.3em; font-weight:600; text-transform:uppercase;">{{ followLabel }}</span>
+      <div style="display:flex; gap:24px; flex-wrap:wrap;">
+        <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Instagram</a>
+        <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Facebook</a>
+        <a href="#" style="color:#14110d; font-size:11px; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:opacity 0.3s ease;" style-hover="opacity:0.5;">Twitter</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;ctaVariant&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;A&quot;, &quot;B&quot;], &quot;default&quot;: &quot;A&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;CTAs (A: Reservar por WhatsApp · B: Asegura tu cupo)&quot;},
+  &quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;+51 962 379 223&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;WhatsApp&quot;},
+  &quot;showFab&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;WhatsApp&quot;}
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.detectLang(),
+      isMobile: (typeof window !== 'undefined' && window.innerWidth <= 760),
+      menuOpen: false
+    };
+    this.handleResize = this.handleResize.bind(this);
+  }
+
+  detectLang() {
+    try {
+      const saved = localStorage.getItem('krp_lang');
+      if (saved === 'en' || saved === 'es') return saved;
+    } catch (e) {}
+    try {
+      const spanish = (typeof window !== 'undefined' && window.SPANISH_COUNTRIES) || [];
+      const list = (navigator.languages && navigator.languages.length)
+        ? navigator.languages
+        : [navigator.language || navigator.userLanguage || 'en'];
+      for (let i = 0; i < list.length; i++) {
+        const tag = (list[i] || '').toLowerCase();
+        if (!tag) continue;
+        if (tag === 'es' || tag.indexOf('es-') === 0) return 'es';
+        const region = tag.split('-')[1];
+        if (region && spanish.indexOf(region.toUpperCase()) !== -1) return 'es';
+      }
+    } catch (e) {}
+    return 'en';
+  }
+
+  setLang = (lang) => {
+    if (lang !== 'en' && lang !== 'es') return;
+    try { localStorage.setItem('krp_lang', lang); } catch (e) {}
+    this.setState({ lang });
+  };
+  setEN = () => this.setLang('en');
+  setES = () => this.setLang('es');
+  openMenu = () => this.setState({ menuOpen: true });
+  closeMenu = () => this.setState({ menuOpen: false });
+
+  componentDidMount() { window.addEventListener('resize', this.handleResize); }
+  componentWillUnmount() { window.removeEventListener('resize', this.handleResize); }
+  handleResize() {
+    const m = window.innerWidth <= 760;
+    if (m !== this.state.isMobile) this.setState({ isMobile: m });
+  }
+
+  // ——— Catálogo real (Anexo A, CC-001) — 20 actividades en 9 categorías ———
+  catalogData() {
+    return [
+      { key: 'canotaje', num: '01', name: { es: ['Canotaje', ''], en: ['Rafting', ''] },
+        sub: { es: 'El clásico de Lunahuaná: rápidos del río Cañete con guías de talla mundial.', en: 'The Lunahuaná classic: Cañete river rapids with world-class guides.' },
+        items: [
+          { key: 'ruta-alta', name: { es: ['Ruta', 'Alta'], en: ['Ruta', 'Alta'] }, msg: 'Canotaje Ruta Alta',
+            meta: { es: '4 km · 1 h · Clase III–IV+ · Desde 8 años', en: '4 km · 1 h · Class III–IV+ · Ages 8+' },
+            price: 'S/ 50.00', photo: './assets/photos/lunahuana-raft-on-river.jpg',
+            alt: { es: 'Balsa en los rápidos del río Cañete', en: 'Raft on the Cañete river rapids' },
+            chip: { text: 'III–IV+', bg: 'var(--grade-IV, #e07327)', fg: '#f7f4ef' } },
+          { key: 'ruta-baja', name: { es: ['Ruta', 'Baja'], en: ['Ruta', 'Baja'] }, msg: 'Canotaje Ruta Baja',
+            meta: { es: '4 km · 1:30 h · Clase II–III+ · Visita a Bodega Zapata', en: '4 km · 1:30 h · Class II–III+ · Bodega Zapata visit' },
+            price: null, photo: './assets/lunahuana-raft-launch.jpg',
+            alt: { es: 'Grupo iniciando el descenso en balsa', en: 'Group launching the raft' },
+            chip: { text: 'II–III+', bg: 'var(--grade-III, #f5a623)', fg: '#14110d' } }
+        ] },
+      { key: 'kayak', num: '02', name: { es: ['Kayak', 'Ducky'], en: ['Kayak', 'Ducky'] },
+        sub: { es: 'Tu propio bote inflable, siete kilómetros de corriente.', en: 'Your own inflatable boat, seven kilometres of current.' },
+        items: [
+          { key: 'ducky-doble', name: { es: ['Ducky', 'Doble 7K'], en: ['Ducky', 'Double 7K'] }, msg: 'Kayak Ducky Doble 7K',
+            meta: { es: '7 km · Bote doble · Desde 12 años', en: '7 km · Two-seater · Ages 12+' }, price: null, photo: './assets/photos/ducky-doble.png', alt: { es: 'Kayak ducky doble en el río Cañete', en: 'Double ducky kayak on the Cañete river' } },
+          { key: 'ducky-individual', name: { es: ['Ducky', 'Individual 7K'], en: ['Ducky', 'Solo 7K'] }, msg: 'Kayak Ducky Individual 7K',
+            meta: { es: '7 km · Bote individual · Desde 12 años', en: '7 km · Solo boat · Ages 12+' }, price: null, photo: './assets/photos/ducky-individual.png', alt: { es: 'Kayaks ducky individuales en el río', en: 'Solo ducky kayaks on the river' } }
+        ] },
+      { key: 'cuatrimotos', num: '03', name: { es: ['Cuatrimotos', ''], en: ['ATV', 'Rides'] },
+        sub: { es: 'Polvo, bodegas y miradores del valle.', en: 'Dust, wineries and valley lookouts.' },
+        items: [
+          { key: 'cuatri-6k', name: { es: ['Ruta', '6K'], en: ['Ruta', '6K'] }, msg: 'Cuatrimoto Ruta 6K',
+            meta: { es: 'Ruta de 6 km · Guías certificados', en: '6 km route · Certified guides' }, price: 'S/ 35.00', photo: './assets/photos/cuatri-6k.png', alt: { es: 'Grupo en cuatrimotos en el valle', en: 'Group on ATVs in the valley' } },
+          { key: 'cuatri-7k', name: { es: ['Ruta', '7K Bodegas'], en: ['Ruta', '7K Wineries'] }, msg: 'Cuatrimoto Ruta 7K Bodegas',
+            meta: { es: '7 km · Ruta de bodegas', en: '7 km · Winery route' }, price: 'S/ 40.00', photo: './assets/photos/cuatri-7k.png', alt: { es: 'Cuatrimoto junto al río', en: 'ATV by the river' } },
+          { key: 'cuatri-9k', name: { es: ['Ruta', '9K Catapalla'], en: ['Ruta', '9K Catapalla'] }, msg: 'Cuatrimoto Ruta 9K Catapalla',
+            meta: { es: '9 km · 60 min · La Momia · Desde 5 años', en: '9 km · 60 min · La Momia · Ages 5+' }, price: 'S/ 60.00', photo: './assets/photos/cuatri-9k.png', alt: { es: 'Cuatrimoto en la ruta a Catapalla', en: 'ATV on the Catapalla trail' } }
+        ] },
+      { key: 'canopy', num: '04', name: { es: ['Canopy', ''], en: ['Canopy', ''] },
+        sub: { es: 'Cruza el valle volando, de torre en torre.', en: 'Fly across the valley, tower to tower.' },
+        items: [
+          { key: 'canopy-lunahuana', name: { es: ['Lunahuaná', '750 m'], en: ['Lunahuaná', '750 m'] }, msg: 'Canopy Lunahuaná 750 m',
+            meta: { es: '750 m de cable · Desde 8 años', en: '750 m line · Ages 8+' }, price: 'S/ 50.00', photo: './assets/photos/canopy-lunahuana.png', alt: { es: 'Canopy sobre el río Lunahuaná', en: 'Zipline over the Lunahuaná river' } },
+          { key: 'canopy-condoray', name: { es: ['Condoray', '800 m'], en: ['Condoray', '800 m'] }, msg: 'Canopy Condoray 800 m',
+            meta: { es: '800 m de cable', en: '800 m line' }, price: null, photo: './assets/photos/canopy-condoray.png', alt: { es: 'Canopy en Condoray', en: 'Zipline at Condoray' } },
+          { key: 'canopy-sanjeronimo', name: { es: ['San Jerónimo', '2000 m'], en: ['San Jerónimo', '2000 m'] }, msg: 'Canopy San Jerónimo 2000 m',
+            meta: { es: '2000 m de cable', en: '2000 m line' }, price: null, photo: './assets/photos/canopy-sanjeronimo.png', alt: { es: 'Canopy en San Jerónimo', en: 'Zipline at San Jerónimo' } }
+        ] },
+      { key: 'aereos', num: '05', name: { es: ['Circuitos', 'Aéreos'], en: ['Aerial', 'Circuits'] },
+        sub: { es: 'Circuitos de altura: 25 minutos de pulso firme.', en: 'High circuits: 25 minutes of steady nerve.' },
+        items: [
+          { key: 'puente-tibetano', name: { es: ['Puente', 'Tibetano'], en: ['Puente', 'Tibetano'] }, msg: 'Puente Tibetano',
+            meta: { es: '25 min · Circuito aéreo', en: '25 min · Aerial circuit' }, price: 'S/ 45.00', photo: './assets/photos/puente-tibetano.png', alt: { es: 'Cruzando el Puente Tibetano', en: 'Crossing the Tibetan bridge' } },
+          { key: 'bicicleta-extrema', name: { es: ['Bicicleta', 'Extrema'], en: ['Bicicleta', 'Extrema'] }, msg: 'Bicicleta Extrema',
+            meta: { es: '25 min · Circuito aéreo', en: '25 min · Aerial circuit' }, price: 'S/ 45.00', photo: './assets/photos/bicicleta-extrema.png', alt: { es: 'Bicicleta extrema sobre el cañón', en: 'Extreme bike over the canyon' } },
+          { key: 'escalera-cielo', name: { es: ['Escalera', 'al Cielo'], en: ['Escalera', 'al Cielo'] }, msg: 'Escalera al Cielo',
+            meta: { es: '25 min · Circuito aéreo', en: '25 min · Aerial circuit' }, price: null, photo: './assets/photos/escalera-cielo.png', alt: { es: 'Escalera al Cielo sobre el río', en: 'Escalera al Cielo above the river' } },
+          { key: 'todo-o-nada', name: { es: ['Combo', 'Todo o Nada'], en: ['Combo', 'Todo o Nada'] }, msg: 'Combo Todo o Nada',
+            meta: { es: 'Los 3 circuitos aéreos', en: 'All 3 aerial circuits' }, price: null, photo: './assets/photos/todo-o-nada.png', alt: { es: 'Circuitos aéreos sobre el río', en: 'Aerial circuits over the river' } }
+        ] },
+      { key: 'rappel', num: '06', name: { es: ['Rappel', ''], en: ['Rappel', ''] },
+        sub: { es: 'Desciende la Roca Luna con equipos certificados.', en: 'Descend Roca Luna on certified gear.' },
+        items: [
+          { key: 'rappel-roca-luna', name: { es: ['Rappel', 'Roca Luna'], en: ['Rappel', 'Roca Luna'] }, msg: 'Rappel Roca Luna',
+            meta: { es: '1 h · Roca Luna · Guías certificados', en: '1 h · Roca Luna · Certified guides' }, price: null, photo: './assets/photos/rappel-roca-luna.png', alt: { es: 'Rappel en la Roca Luna', en: 'Rappelling Roca Luna' } }
+        ] },
+      { key: 'extremo', num: '07', name: { es: ['Extremo', ''], en: ['Extreme', ''] },
+        sub: { es: 'Para quienes quieren un grado más.', en: 'For those who want one grade more.' },
+        items: [
+          { key: 'extreme-rafting', name: { es: ['Extreme', 'Rafting'], en: ['Extreme', 'Rafting'] }, msg: 'Extreme Rafting',
+            meta: { es: 'Guías certificados', en: 'Certified guides' }, price: 'S/ 45.00',
+            photo: './assets/photos/extreme-rafting.png',
+            alt: { es: 'Balsa suspendida en el Extreme Rafting', en: 'Suspended raft on Extreme Rafting' },
+            chip: { text: { es: 'Extremo', en: 'Extreme' }, bg: 'var(--grade-V, #d32a2f)', fg: '#f7f4ef' } },
+          { key: 'columpio-extremo', name: { es: ['Columpio', 'Extremo'], en: ['Columpio', 'Extremo'] }, msg: 'Columpio Extremo',
+            meta: { es: 'Guías certificados', en: 'Certified guides' }, price: 'S/ 50.00', photo: './assets/photos/columpio-extremo.png', alt: { es: 'Columpio extremo sobre el cañón', en: 'Extreme swing over the canyon' } }
+        ] },
+      { key: 'caballos', num: '08', name: { es: ['Paseos a', 'Caballo'], en: ['Horseback', 'Rides'] },
+        sub: { es: 'El valle a paso de caballo.', en: 'The valley at a horse’s pace.' },
+        items: [
+          { key: 'caballo-ganadera', name: { es: ['Paseo', 'Ganadera'], en: ['Paseo', 'Ganadera'] }, msg: 'Paseo a Caballo Ganadera',
+            meta: { es: 'Guías certificados', en: 'Certified guides' }, price: 'S/ 30.00', photo: './assets/photos/caballo-ganadera.png', alt: { es: 'Paseo a caballo, ruta Ganadera', en: 'Horseback ride, Ganadera route' } },
+          { key: 'caballo-campos', name: { es: ['Paseo', 'Campos'], en: ['Paseo', 'Campos'] }, msg: 'Paseo a Caballo Campos',
+            meta: { es: 'Guías certificados', en: 'Certified guides' }, price: 'S/ 50.00', photo: './assets/photos/caballo-campos.png', alt: { es: 'Paseo a caballo por los campos', en: 'Horseback ride through the fields' } }
+        ] },
+      { key: 'city-tour', num: '09', name: { es: ['City', 'Tour'], en: ['City', 'Tour'] },
+        sub: { es: 'La Lunahuaná histórica en una tarde.', en: 'Historic Lunahuaná in one afternoon.' },
+        items: [
+          { key: 'city-tour-lunahuana', name: { es: ['City', 'Tour'], en: ['City', 'Tour'] }, msg: 'City Tour Lunahuaná',
+            meta: { es: 'Guías certificados', en: 'Certified guides' }, price: 'S/ 30.00', photo: './assets/photos/city-tour.png', alt: { es: 'Iglesia colonial de Lunahuaná', en: 'Colonial church of Lunahuaná' } }
+        ] }
+    ];
+  }
+
+  renderVals() {
+    const m = this.state.isMobile;
+    const open = this.state.menuOpen;
+    const lang = (this.state.lang === 'es') ? 'es' : 'en';
+    const es = (lang === 'es');
+    const v = (this.props.ctaVariant === 'B') ? 'B' : 'A';
+    const waNum = String(this.props.whatsappNumber ?? '+51 962 379 223').replace(/\D/g, '') || '51962379223';
+    const showFab = (this.props.showFab ?? true) ? true : false;
+    const wa = (msg) => 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(msg);
+
+    // ——— Microcopy CTA: 2 variantes ES/EN (tweak "ctaVariant") ———
+    const CTA = {
+      A: { es: 'Reservar por WhatsApp', en: 'Book via WhatsApp' },
+      B: { es: 'Asegura tu cupo', en: 'Secure your spot' }
+    };
+    const FAB = {
+      A: { es: '¿Dudas? Escríbenos', en: 'Questions? Message us' },
+      B: { es: 'Habla con un guía', en: 'Talk to a guide' }
+    };
+    const ctaLabel = CTA[v][lang];
+    const fabLabel = FAB[v][lang];
+
+    const dict = (typeof window !== 'undefined' && window.translations) ? window.translations : {};
+    const t = dict[lang] || dict.en || {};
+    const navData = t.nav || [];
+    const hrefs = ['./index.html', '#', '#', '#', '#', '#'];
+    const navItems = navData.map((d, i) => {
+      const delay = open ? (0.2 + i * 0.06) : 0;
+      const animStyle = [
+        'display:flex', 'flex-wrap:wrap', 'align-items:baseline', 'column-gap:0.25em', 'text-decoration:none',
+        'opacity:' + (open ? 1 : 0),
+        'transform:translateX(' + (open ? '0' : '22px') + ')',
+        'transition:opacity 0.6s ease ' + delay + 's, transform 0.6s cubic-bezier(0.16,1,0.3,1) ' + delay + 's'
+      ].join(';');
+      return { roman: d.roman, italic: d.italic, animStyle, href: hrefs[i] || '#' };
+    });
+
+    const sections = this.catalogData().map((cat) => ({
+      label: cat.name.es[0] + (cat.name.es[1] ? ' ' + cat.name.es[1] : ''),
+      num: cat.num,
+      roman: cat.name[lang][0],
+      italic: cat.name[lang][1],
+      sub: cat.sub[lang],
+      items: cat.items.map((it) => {
+        const msg = es
+          ? 'Hola, me interesa ' + it.msg + ' en Lunahuaná. ¿Tienen disponibilidad? Somos __ personas para la fecha __.'
+          : 'Hi, I’m interested in ' + it.msg + ' in Lunahuaná. Do you have availability? We are __ people, date: __.';
+        const chipText = it.chip ? (typeof it.chip.text === 'string' ? it.chip.text : it.chip.text[lang]) : false;
+        return {
+          roman: it.name[lang][0],
+          italic: it.name[lang][1],
+          meta: it.meta[lang],
+          price: it.price || false,
+          validity: it.price ? (es ? 'Vigente jul 2026' : 'Valid thru Jul 2026') : '',
+          consult: it.price ? false : (es ? 'Consultar precio' : 'Ask for price'),
+          photo: it.photo || false,
+          alt: it.alt ? it.alt[lang] : '',
+          slotId: it.photo ? false : ('slot-' + it.key),
+          slotPh: (es ? 'Foto: ' : 'Photo: ') + it.msg,
+          chipText,
+          chipStyle: it.chip
+            ? 'position:absolute; top:14px; right:14px; z-index:2; display:inline-flex; padding:6px 10px; font-family:\'Archivo\',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; background:' + it.chip.bg + '; color:' + it.chip.fg + ';'
+            : '',
+          wa: wa(msg),
+          aria: (es ? 'Reservar ' : 'Book ') + it.msg + (es ? ' por WhatsApp' : ' via WhatsApp')
+        };
+      })
+    }));
+
+    const fabMsg = es
+      ? 'Hola, tengo una consulta sobre sus aventuras en Lunahuaná.'
+      : 'Hi, I have a question about your adventures in Lunahuaná.';
+
+    return {
+      setEN: this.setEN, setES: this.setES,
+      openMenu: this.openMenu, closeMenu: this.closeMenu,
+      menuLabel: t.menu || 'Menu',
+      closeLabel: t.close || 'Close',
+      followLabel: t.follow || '',
+      brandLine1: (t.brand && t.brand.line1) || 'Rafting Perú',
+      brandLine2: (t.brand && t.brand.line2) || 'Kayak Adventures',
+      backLabel: es ? 'Inicio' : 'Home',
+      backAria: es ? 'Volver al inicio' : 'Back to home',
+      eyebrow: es ? 'Catálogo oficial · Lunahuaná' : 'Official catalog · Lunahuaná',
+      titleRoman: es ? 'Nuestras' : 'Our',
+      titleItalic: es ? 'Aventuras' : 'Adventures',
+      introText: es
+        ? 'Guías de talla mundial, equipos certificados y 20 actividades en el valle de Lunahuaná. Elige la tuya y resérvala en un mensaje.'
+        : 'World-class guides, certified equipment and 20 activities across the Lunahuaná valley. Pick yours and book it in one message.',
+      sections,
+      ctaLabel,
+      showFab,
+      fabLabel,
+      fabWa: wa(fabMsg),
+      fabAria: fabLabel + ' — WhatsApp',
+
+      headerStyle: 'position:sticky; top:0; z-index:30; display:flex; justify-content:space-between; align-items:center; gap:16px; box-sizing:border-box; padding:' + (m ? '12px 20px' : '16px 48px') + '; background:#f4f1ec; border-bottom:1px solid rgba(20,17,13,0.10); animation:fadeIn 0.8s ease both;',
+      headerLeftStyle: 'display:flex; align-items:center; gap:' + (m ? '12px' : '22px') + '; min-width:0;',
+      headerRightStyle: 'display:flex; align-items:center; gap:' + (m ? '14px' : '30px') + '; flex:none;',
+      headerDividerStyle: m ? 'display:none;' : 'width:1px; height:26px; background:rgba(20,17,13,0.20);',
+      brandStyle: (m ? 'display:none;' : 'display:flex;') + ' align-items:center; gap:12px; text-decoration:none;',
+      backLinkStyle: 'display:inline-flex; align-items:center; gap:8px; min-height:44px; text-decoration:none; color:#14110d; font-family:\'Archivo\',sans-serif; font-size:' + (m ? '11px' : '12px') + '; letter-spacing:0.24em; font-weight:600; text-transform:uppercase; transition:opacity 0.3s ease;',
+      enBtnStyle: 'background:none; border:none; cursor:pointer; padding:8px 2px; font-family:\'Archivo\',sans-serif; font-size:' + (m ? '10px' : '12px') + '; letter-spacing:' + (m ? '0.16em' : '0.24em') + '; font-weight:600; text-transform:uppercase; transition:color 0.3s ease; color:' + (es ? 'rgba(20,17,13,0.45)' : '#14110d') + ';',
+      esBtnStyle: 'background:none; border:none; cursor:pointer; padding:8px 2px; font-family:\'Archivo\',sans-serif; font-size:' + (m ? '10px' : '12px') + '; letter-spacing:' + (m ? '0.16em' : '0.24em') + '; font-weight:600; text-transform:uppercase; transition:color 0.3s ease; color:' + (es ? '#14110d' : 'rgba(20,17,13,0.45)') + ';',
+      menuBtnStyle: 'display:flex; align-items:center; gap:' + (m ? '8px' : '12px') + '; min-height:44px; background:none; border:none; cursor:pointer; font-family:\'Archivo\',sans-serif; font-size:' + (m ? '11px' : '13px') + '; letter-spacing:0.3em; font-weight:600; color:#14110d; text-transform:uppercase; padding:0;',
+
+      mainStyle: 'max-width:1440px; margin:0 auto; box-sizing:border-box; padding:' + (m ? '0 20px 150px' : '0 48px 170px') + ';',
+      heroStyle: 'display:flex; flex-direction:column; gap:14px; padding:' + (m ? '36px 0 44px' : '64px 0 72px') + '; max-width:860px;',
+      eyebrowStyle: 'font-family:\'Archivo\',sans-serif; font-size:' + (m ? '10px' : '11px') + '; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#b25636; animation:softUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.05s;',
+      h1Style: 'margin:0; font-family:\'Playfair Display\',serif; font-weight:800; color:#14110d; line-height:0.95; letter-spacing:-0.01em; font-size:clamp(44px, 7vw, 96px); animation:softUp 0.9s cubic-bezier(0.16,1,0.3,1) both 0.15s;',
+      introStyle: 'margin:0; max-width:580px; font-family:\'Archivo\',sans-serif; font-size:' + (m ? '11px' : '12.5px') + '; line-height:1.9; letter-spacing:0.18em; text-transform:uppercase; color:#4a463f; animation:softUp 0.9s ease both 0.3s;',
+
+      fabStyle: 'position:fixed; z-index:45; right:' + (m ? '16px' : '28px') + '; bottom:calc(' + (m ? '16px' : '24px') + ' + env(safe-area-inset-bottom, 0px)); display:flex; align-items:center; gap:12px; text-decoration:none; animation:softUp 0.8s cubic-bezier(0.16,1,0.3,1) both 0.5s;',
+      fabPillStyle: 'display:inline-flex; align-items:center; background:#14110d; color:#f7f4ef; padding:' + (m ? '10px 14px' : '12px 18px') + '; font-family:\'Archivo\',sans-serif; font-size:' + (m ? '10px' : '11px') + '; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; box-shadow:var(--shadow-card-lg, 0 18px 50px rgba(6,6,6,0.25));',
+      fabCircleStyle: 'display:flex; align-items:center; justify-content:center; width:' + (m ? '52px' : '60px') + '; height:' + (m ? '52px' : '60px') + '; border-radius:50%; background:#3d6d2c; color:#f7f4ef; box-shadow:0 0 0 2px #ff6008, var(--shadow-card-lg, 0 18px 50px rgba(6,6,6,0.3));',
+
+      overlayStyle: 'position:fixed; inset:0; z-index:50; background:rgba(6,6,6,0.42); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); transition:opacity 0.5s ease, visibility 0.5s ease; opacity:' + (open ? 1 : 0) + '; visibility:' + (open ? 'visible' : 'hidden') + ';',
+      panelStyle: 'position:fixed; top:0; right:0; z-index:51; height:100%; box-sizing:border-box; width:' + (m ? '100%' : 'min(600px, 46vw)') + '; background:#f6f3ee; box-shadow:-30px 0 80px rgba(0,0,0,0.35); transform:translateX(' + (open ? '0' : '101%') + '); transition:transform 0.6s cubic-bezier(0.16,1,0.3,1); display:flex; flex-direction:column; padding:' + (m ? '24px 24px 32px' : '34px 44px 44px') + ';',
+      navListStyle: 'margin:auto 0; display:flex; flex-direction:column; gap:' + (m ? '6px' : '10px') + ';',
+      navItems
+    };
+  }
+}
+</script>
+</body>
+</html>

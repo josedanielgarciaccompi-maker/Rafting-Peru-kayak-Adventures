@@ -65,9 +65,9 @@
           <span style="font-size:14px; line-height:1;">{{ soundIcon }}</span>
           <span style="{{ soundLabelStyle }}">{{ soundLabel }}</span>
         </button>
-        <button style="{{ reserveBtnStyle }}" style-hover="background:#e85500; color:#ffffff; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.35);">
+        <a href="./aventuras.dc.html" style="{{ reserveBtnStyle }}" style-hover="background:#e85500; color:#ffffff; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.35);">
           {{ reserveText }} <span style="font-family:'Playfair Display',serif; font-style:italic; font-weight:600; text-transform:none; font-size:18px; letter-spacing:0.02em;">{{ reserveWord }}</span>
-        </button>
+        </a>
       </div>
     </div>
 
@@ -98,7 +98,7 @@
 
     <nav style="{{ navListStyle }}">
       <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
-        <a href="#" onClick="{{ closeMenu }}" style="{{ item.animStyle }}">
+        <a href="{{ item.href }}" onClick="{{ closeMenu }}" style="{{ item.animStyle }}">
           <span style="font-family:'Playfair Display',serif; font-size:clamp(28px, 3.6vw, 46px); font-weight:700; color:#14110d; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.02;">{{ item.roman }}</span>
           <span style="font-family:'Playfair Display',serif; font-size:clamp(28px, 3.6vw, 46px); font-style:italic; font-weight:500; color:#b0a99e; line-height:1.02;">{{ item.italic }}</span>
         </a>
@@ -274,7 +274,7 @@ class Component extends DCLogic {
         "transform:translateX(" + (open ? "0" : "22px") + ")",
         "transition:opacity 0.6s ease " + delay + "s, transform 0.6s cubic-bezier(0.16,1,0.3,1) " + delay + "s"
       ].join(";");
-      return { roman: d.roman, italic: d.italic, animStyle };
+      return { roman: d.roman, italic: d.italic, animStyle, href: (i === 1 ? './aventuras.dc.html' : '#') };
     });
 
     return {
@@ -329,7 +329,7 @@ class Component extends DCLogic {
         ? "width:100%; align-items:stretch;"
         : "align-items:center; flex:none; margin-left:auto;") + " animation:softUp 1s ease both 0.95s;",
 
-      reserveBtnStyle: "" + (m ? "flex:1 1 auto; min-width:0; " : "flex:none; ") + "background:#ff6008; border:none; cursor:pointer; padding:" + (m ? "17px 20px" : "30px 56px") + "; color:#ffffff; font-family:'Archivo',sans-serif; font-size:" + (m ? "12px" : "14px") + "; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; white-space:nowrap; transition:background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;",
+      reserveBtnStyle: "" + (m ? "flex:1 1 auto; min-width:0; " : "flex:none; ") + "background:#ff6008; border:none; cursor:pointer; padding:" + (m ? "17px 20px" : "30px 56px") + "; color:#ffffff; font-family:'Archivo',sans-serif; font-size:" + (m ? "12px" : "14px") + "; letter-spacing:0.22em; font-weight:600; text-transform:uppercase; white-space:nowrap; display:inline-flex; align-items:center; justify-content:center; gap:10px; box-sizing:border-box; text-decoration:none; text-align:center; transition:background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;",
 
       heroOverlayStyle: "position:relative; z-index:1; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column; background:" + (m
         ? "linear-gradient(180deg, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.28) 26%, rgba(8,8,8,0.32) 52%, rgba(8,8,8,0.66) 100%)"
